@@ -34,6 +34,7 @@ export class CharactersComponent {
 
   ngOnInit(): void{
     this.getCharacters;
+    //por fin se agrego el fuckin proyecto
   }
 
   getCharacters(page: any){
