@@ -1,4 +1,4 @@
-<div class="row">
+<!--<div class="row">
     <div *ngFor="let character of listCharacters" class="col-md-4">
 
         <p-card [header]="character.name" subheader="Card Subheader" [style]="{ width: '360px' }">
@@ -6,16 +6,59 @@
                 <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
             </ng-template>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae
-                numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis
-                esse, cupiditate neque
-                quas!
+
             </p>
         </p-card>
-        
-    </div>
 
+    </div>
     <div class="card flex justify-content-center">
         <p-paginator (onPageChange)="onPageChange($event)"  [first]="first" [rows]="rows" [totalRecords]="826" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
     </div>
+</div> -->
+
+
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="searchFilters">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <span class="p-input-icon-left">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" class="p-inputtext-ms" pInputText />
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <p-dropdown formControlName="status" [options]="Status" optionLabel="name"
+                        placeholder="Select a City"></p-dropdown>
+                </div>
+            </div>
+            <div class="row"></div>
+        </form>
+    </div>
 </div>
+
+
+<div class="card flex justify-content-center">
+    <p-card header="Filter">
+        <form [formGroup]="searchFilters">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <span class="p-input-icon-left">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" class="p-inputtext-ms" pInputText />
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <p-dropdown  formControlName="status" [options]="Status" optionLabel="name"
+                        placeholder="Select a City"></p-dropdown>
+                </div>
+            </div>
+            <div class="row"></div>
+        </form>
+    </p-card>
+</div>
+

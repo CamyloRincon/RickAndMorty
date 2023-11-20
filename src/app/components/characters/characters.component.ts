@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { shareReplay } from 'rxjs';
 import { CharactersService } from 'src/app/services/characters.service';
 
 
@@ -13,34 +15,66 @@ import { CharactersService } from 'src/app/services/characters.service';
 
 export class CharactersComponent {
 
-
-  listCharacters: any[] = [];
-
-  constructor(private _charactersService: CharactersService){}
-
   
+
+  listCharacters1: any[] = [];
+  listCharacters: any[] = [];
+  listAllName: any[] = [];
+  Status: any[] = [];
+
+  constructor(private _charactersService: CharactersService) {
+
+    this.Status = [
+      { name: 'Alive'},
+      { name: 'Dead'},
+      { name: 'Unknow'}
+  ];
+
+   }
+
+
+
   first: number = 0;
-  page: number = 0;
+  page: number = 0 ;
   rows: number = 10;
+
+
 
   onPageChange(event: any) {
 
-      this.first = event.first;
-      this.rows = event.rows;
-      this.page = event.page + 1;
-      this.getCharacters(this.page);
-      console.log(this.page);
+    this.first = event.first;
+    this.rows = event.rows; 
+    this.page = event.page + 1;
+    console.log(this.page);
+    this.getCharacters(this.page);
+
   }
 
-  ngOnInit(): void{
-    this.getCharacters;
-  }
+  searchFilters = new FormGroup ({
+    status: new FormControl(''),
+    gender: new FormControl('')
+  })
 
-  getCharacters(page: any){
-    this._charactersService.getAll(page).subscribe(data =>{
+
+  ngOnInit(): void {
+    /*this._charactersService.getAllCharacters().subscribe(data => {
       this.listCharacters = data.results;
-      console.log(data);
-    })
+      
+    })*/
+  }
+
+  getCharacters(page: any) {
+   this._charactersService.getAll(page).subscribe(data =>{
+      this.listCharacters = data.results;
+     /*this.listCharacters.forEach(e => {
+      this.listAllName.push(e.name);
+      return this.listAllName;
+     });*/
+   
+      console.log(this.listCharacters);
+      
+    });
+
   }
 
 

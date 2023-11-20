@@ -10,12 +10,17 @@ import { CharactersComponent } from './components/characters/characters.componen
 //imports prime ng
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
+import { ListCharactersComponent } from './components/list-characters/list-characters.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CharactersComponent
+    CharactersComponent,
+    ListCharactersComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,8 @@ import { PaginatorModule } from 'primeng/paginator';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CardModule,
-    PaginatorModule
+    PaginatorModule,
+    InputTextModule
 
   ],
   providers: [],
