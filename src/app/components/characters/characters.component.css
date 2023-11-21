@@ -3,3 +3,10 @@
 :host ::ng-deep .p-dropdown-items{
     padding-left: 0rem;
 }
+:host ::ng-deep .p-dropdown{
+    width: 100%;
+}
+
+.p-input-icon-left, .p-inputtext-ms{
+    width: 100%;
+}

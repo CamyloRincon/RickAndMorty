@@ -17,48 +17,30 @@
 </div> -->
 
 
-<div class="card">
-    <div class="card-body">
-        <form [formGroup]="searchFilters">
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <span class="p-input-icon-left">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" class="p-inputtext-ms" pInputText />
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <p-dropdown formControlName="status" [options]="Status" optionLabel="name"
-                        placeholder="Select a City"></p-dropdown>
-                </div>
-            </div>
-            <div class="row"></div>
-        </form>
-    </div>
-</div>
-
-
 <div class="card flex justify-content-center">
     <p-card header="Filter">
-        <form [formGroup]="searchFilters">
+        <form (ngSubmit)="search()">
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <span class="p-input-icon-left">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" class="p-inputtext-ms" pInputText />
+                        <input [ngModelOptions]="{standalone: true}"  [(ngModel)]="Name" type="text" class="p-inputtext-ms" pInputText />
                     </span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <p-dropdown  formControlName="status" [options]="Status" optionLabel="name"
-                        placeholder="Select a City"></p-dropdown>
+                    <p-dropdown [ngModelOptions]="{standalone: true}" name="status" [options]="Status" [(ngModel)]="status" optionLabel="name" [showClear]="true"
+                        placeholder="Select a status"></p-dropdown>
                 </div>
             </div>
-            <div class="row"></div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <p-dropdown [ngModelOptions]="{standalone: true}" name="gender" [options]="Gender" [(ngModel)]="gender" optionLabel="name" [showClear]="true"
+                        placeholder="Select a gender"></p-dropdown>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Buscar</button>
         </form>
     </p-card>
 </div>
-

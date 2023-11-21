@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { shareReplay } from 'rxjs';
+import { filter, shareReplay } from 'rxjs';
 import { CharactersService } from 'src/app/services/characters.service';
 
 
@@ -15,45 +15,58 @@ import { CharactersService } from 'src/app/services/characters.service';
 
 export class CharactersComponent {
 
-  
 
-  listCharacters1: any[] = [];
+
+
   listCharacters: any[] = [];
-  listAllName: any[] = [];
+  Name: string | undefined;
   Status: any[] = [];
+  status: any;
+  Gender: any[] = [];
+  gender: any;
 
   constructor(private _charactersService: CharactersService) {
 
     this.Status = [
-      { name: 'Alive'},
-      { name: 'Dead'},
-      { name: 'Unknow'}
-  ];
+      { name: 'Alive' },
+      { name: 'Dead' },
+      { name: 'Unknow' }
+    ];
 
-   }
+    this.Gender = [
+      { name: 'female' },
+      { name: 'male' },
+      { name: 'genderless' },
+      { name: 'unknown' }
+    ];
 
+  }
+
+
+  search(){
+    const FILTERS = {
+      name: this.Name,
+      status: this.status,
+      gender: this.gender
+    }
+    console.log(FILTERS);
+  }
 
 
   first: number = 0;
-  page: number = 0 ;
+  page: number = 0;
   rows: number = 10;
-
-
 
   onPageChange(event: any) {
 
     this.first = event.first;
-    this.rows = event.rows; 
+    this.rows = event.rows;
     this.page = event.page + 1;
     console.log(this.page);
     this.getCharacters(this.page);
 
   }
 
-  searchFilters = new FormGroup ({
-    status: new FormControl(''),
-    gender: new FormControl('')
-  })
 
 
   ngOnInit(): void {
@@ -61,18 +74,19 @@ export class CharactersComponent {
       this.listCharacters = data.results;
       
     })*/
+    
   }
 
   getCharacters(page: any) {
-   this._charactersService.getAll(page).subscribe(data =>{
+    this._charactersService.getAll(page).subscribe(data => {
       this.listCharacters = data.results;
-     /*this.listCharacters.forEach(e => {
-      this.listAllName.push(e.name);
-      return this.listAllName;
-     });*/
-   
+      /*this.listCharacters.forEach(e => {
+       this.listAllName.push(e.name);
+       return this.listAllName;
+      });*/
+
       console.log(this.listCharacters);
-      
+
     });
 
   }
