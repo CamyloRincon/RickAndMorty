@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { filter, shareReplay } from 'rxjs';
 import { CharactersService } from 'src/app/services/characters.service';
@@ -15,41 +15,45 @@ import { CharactersService } from 'src/app/services/characters.service';
 
 export class CharactersComponent {
 
+  @Output() selectedFilters = new EventEmitter<any>();
 
 
-
-  listCharacters: any[] = [];
+  //List variables
   Name: string | undefined;
-  Status: any[] = [];
   status: any;
-  Gender: any[] = [];
   gender: any;
+
+  //List arrays
+  listCharacters: any[] = [];
+  statusList: any[] = [];
+  genderList: any[] = [];
+ 
 
   constructor(private _charactersService: CharactersService) {
 
-    this.Status = [
+    this.statusList = [
       { name: 'Alive' },
       { name: 'Dead' },
       { name: 'Unknow' }
     ];
 
-    this.Gender = [
+    this.genderList = [
       { name: 'female' },
       { name: 'male' },
       { name: 'genderless' },
       { name: 'unknown' }
     ];
-
   }
 
 
-  search(){
+  search() {
     const FILTERS = {
       name: this.Name,
       status: this.status,
       gender: this.gender
     }
     console.log(FILTERS);
+    this.selectedFilters.emit(FILTERS);
   }
 
 
@@ -63,34 +67,11 @@ export class CharactersComponent {
     this.rows = event.rows;
     this.page = event.page + 1;
     console.log(this.page);
-    this.getCharacters(this.page);
 
   }
 
 
 
-  ngOnInit(): void {
-    /*this._charactersService.getAllCharacters().subscribe(data => {
-      this.listCharacters = data.results;
-      
-    })*/
-    
-  }
-
-  getCharacters(page: any) {
-    this._charactersService.getAll(page).subscribe(data => {
-      this.listCharacters = data.results;
-      /*this.listCharacters.forEach(e => {
-       this.listAllName.push(e.name);
-       return this.listAllName;
-      });*/
-
-      console.log(this.listCharacters);
-
-    });
-
-  }
-
-
+  ngOnInit(): void {}
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SearchIcon } from 'primeng/icons/search';
 
 
 @Component({
@@ -9,5 +10,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'rickandmorty-primeng';
 
+
+  searchFilters(filters: any){
+
+    console.log(filters);
+  }
  
 }
+

@@ -30,13 +30,13 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <p-dropdown [ngModelOptions]="{standalone: true}" name="status" [options]="Status" [(ngModel)]="status" optionLabel="name" [showClear]="true"
+                    <p-dropdown [ngModelOptions]="{standalone: true}" name="status" [options]="statusList" [(ngModel)]="status" optionLabel="name" [showClear]="true"
                         placeholder="Select a status"></p-dropdown>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <p-dropdown [ngModelOptions]="{standalone: true}" name="gender" [options]="Gender" [(ngModel)]="gender" optionLabel="name" [showClear]="true"
+                    <p-dropdown [ngModelOptions]="{standalone: true}" name="gender" [options]="genderList" [(ngModel)]="gender" optionLabel="name" [showClear]="true"
                         placeholder="Select a gender"></p-dropdown>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="row mt-4">
         <div class="col-lg-3">
-            <app-characters></app-characters>
+            <app-characters (selectedFilters)="searchFilters($event)"></app-characters>
         </div>
         <div class="col-lg-9">
             <app-list-characters></app-list-characters>
